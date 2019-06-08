@@ -3,11 +3,14 @@ package com.kodilla.TicTacToe;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import static com.kodilla.TicTacToe.TicTacToe.*;
+
 public class Field extends ImageView{
 
     private static boolean turnX = true;
     private int col;
     private int row;
+    Game game = new Game();
 
     public Field(Image image, int col, int row) {
         super(image);
@@ -18,7 +21,7 @@ public class Field extends ImageView{
     }
 
     private void handleMouseClicked() {
-        System.out.println("Field clicked col: " + col + ", row: " + row);
+
         if (getImage() == Constans.EMPTY) {
             if (turnX) {
                 this.setImage(Constans.CROSS);
@@ -30,6 +33,11 @@ public class Field extends ImageView{
                 System.out.println(turnX);
             }
         }
+        String winner = game.whoWins(field00,field01,field02,field10,field11,field12,field20,field21,field22);
+        System.out.println(winner);
+        game.whenFinished();
+
+
     }
 
     public int getCol() {

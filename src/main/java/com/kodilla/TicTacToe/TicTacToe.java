@@ -26,20 +26,6 @@ public class TicTacToe extends Application {
        static Field field12 = new Field(Constans.EMPTY,1,2);
        static Field field22 = new Field(Constans.EMPTY,2,2);
 
-        public static void whoWins(){
-            if(field00.getImage().equals(field01.getImage()) && field00.getImage().equals(field02.getImage()) && field00.getImage().equals(Constans.CROSS) ||
-            field10.getImage().equals(field11.getImage()) && field10.getImage().equals(field12.getImage()) && field00.getImage().equals(Constans.CROSS) ||
-                    field20.getImage().equals(field21.getImage()) && field20.getImage().equals(field22.getImage()) && field00.getImage().equals(Constans.CROSS) ||
-                    field00.getImage().equals(field10.getImage()) && field00.getImage().equals(field20.getImage()) && field00.getImage().equals(Constans.CROSS) ||
-                    field01.getImage().equals(field11.getImage())&& field01.getImage().equals(field21.getImage()) && field00.getImage().equals(Constans.CROSS) ||
-                    field02.getImage().equals(field12.getImage()) && field02.getImage().equals(field22.getImage()) && field00.getImage().equals(Constans.CROSS) ||
-                    field00.getImage().equals(field11.getImage()) && field00.getImage().equals(field22.getImage()) && field00.getImage().equals(Constans.CROSS) ||
-                    field20.getImage().equals(field11.getImage()) && field20.getImage().equals(field12.getImage()) && field00.getImage().equals(Constans.CROSS)){
-                System.out.println("Cross is winner!!!");
-            } else{
-                System.out.println("Circle is the winner");
-            }
-        }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
