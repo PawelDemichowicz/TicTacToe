@@ -1,43 +1,42 @@
 package com.kodilla.TicTacToe;
 
-import static com.kodilla.TicTacToe.TicTacToe.*;
+import javafx.scene.image.Image;
 
-public class Game {
+public class Game extends TicTacToe {
 
-    public String whoWins(Field field00, Field field01, Field field02, Field field10, Field field11,Field field12, Field field20, Field field21, Field field22){
+
+    public static boolean gameIsOn() {
 
         String winner;
 
-        if(field00.getImage() == Constans.CROSS && field01.getImage() == Constans.CROSS && field02.getImage() == Constans.CROSS ||
-            field10.getImage() == Constans.CROSS && field11.getImage() == Constans.CROSS && field12.getImage()==Constans.CROSS ||
-            field20.getImage() == Constans.CROSS && field21.getImage() == Constans.CROSS && field22.getImage()==Constans.CROSS ||
-            field00.getImage() == Constans.CROSS && field10.getImage() == Constans.CROSS && field20.getImage()==Constans.CROSS ||
-            field01.getImage() == Constans.CROSS && field11.getImage() == Constans.CROSS && field21.getImage()==Constans.CROSS ||
-            field02.getImage() == Constans.CROSS && field12.getImage() == Constans.CROSS && field22.getImage()==Constans.CROSS ||
-            field00.getImage() == Constans.CROSS && field11.getImage() == Constans.CROSS && field22.getImage()==Constans.CROSS ||
-            field20.getImage() == Constans.CROSS && field11.getImage() == Constans.CROSS && field02.getImage()==Constans.CROSS){
+        if (checkWinner(Constans.CROSS)) {
 
-        winner = "The winner is CROSS";
+            winner = "The winner is CROSS";
 
-        } else if(field00.getImage() == Constans.CIRCLE && field01.getImage() == Constans.CIRCLE && field02.getImage() == Constans.CIRCLE ||
-            field10.getImage() == Constans.CIRCLE && field11.getImage() == Constans.CIRCLE && field12.getImage()==Constans.CIRCLE ||
-            field20.getImage() == Constans.CIRCLE && field21.getImage() == Constans.CIRCLE && field22.getImage()==Constans.CIRCLE ||
-            field00.getImage() == Constans.CIRCLE && field10.getImage() == Constans.CIRCLE && field20.getImage()==Constans.CIRCLE ||
-            field01.getImage() == Constans.CIRCLE && field11.getImage() == Constans.CIRCLE && field21.getImage()==Constans.CIRCLE ||
-            field02.getImage() == Constans.CIRCLE && field12.getImage() == Constans.CIRCLE && field22.getImage()==Constans.CIRCLE ||
-            field00.getImage() == Constans.CIRCLE && field11.getImage() == Constans.CIRCLE && field22.getImage()==Constans.CIRCLE ||
-            field20.getImage() == Constans.CIRCLE && field11.getImage() == Constans.CIRCLE && field02.getImage()==Constans.CIRCLE){
+        } else if (checkWinner(Constans.CIRCLE)) {
 
-        winner = "The winner is CIRCLE";
+            winner = "The winner is CIRCLE";
 
-        }else winner = "The game is on";
+        } else winner = "The game is on";
         return winner;
     }
 
-    public void whenFinished(){
-
-        if (whoWins(field00,field01,field02,field10,field11,field12,field20,field21,field22) != "The game is on")
-            System.out.printf("The Game is ending....");
-
+    private static boolean checkWinner(Image cross) {
+        return field00.getImage() == cross && field01.getImage() == cross && field02.getImage() == cross ||
+                field10.getImage() == cross && field11.getImage() == cross && field12.getImage() == cross ||
+                field20.getImage() == cross && field21.getImage() == cross && field22.getImage() == cross ||
+                field00.getImage() == cross && field10.getImage() == cross && field20.getImage() == cross ||
+                field01.getImage() == cross && field11.getImage() == cross && field21.getImage() == cross ||
+                field02.getImage() == cross && field12.getImage() == cross && field22.getImage() == cross ||
+                field00.getImage() == cross && field11.getImage() == cross && field22.getImage() == cross ||
+                field20.getImage() == cross && field11.getImage() == cross && field02.getImage() == cross;
     }
+
+    public static void whenFinished() {
+        if (!gameIsOn()) {
+            System.out.printf("The Game is ending....");
+            TicTacToe.window.setScene(TicTacToe.endScene);
+        }
+    }
+
 }

@@ -4,18 +4,16 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.Button;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class TicTacToe extends Application {
 
+public class TicTacToe extends Application {
+    static Stage window;
+    static Button button;
+    static Scene scene, endScene;
        static Field field00 = new Field(Constans.EMPTY,0,0);
        static Field field10 = new Field(Constans.EMPTY,1,0);
        static Field field20 = new Field(Constans.EMPTY,2,0);
@@ -29,6 +27,8 @@ public class TicTacToe extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        window = primaryStage;
+        button = new Button("Game is end. Click me for get back to application");
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER_LEFT);
@@ -48,12 +48,17 @@ public class TicTacToe extends Application {
         grid.add(field12, 1, 2);
         grid.add(field22, 2, 2);
 
-        Scene scene = new Scene(grid, 900, 600, Color.BLACK);
+        StackPane endLayout = new StackPane();
+        endLayout.getChildren().add(button);
 
-        primaryStage.setTitle("TicTacToe");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        scene = new Scene(grid, 900, 600, Color.GREEN);
+        endScene = new Scene(endLayout,300,300);
 
+        button.setOnAction(event -> window.setScene(scene));
+
+        window.setTitle("TicTacToe");
+        window.setScene(scene);
+        window.show();
     }
 
     public static void main(String[] args) {
