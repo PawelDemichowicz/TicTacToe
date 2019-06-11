@@ -3,9 +3,6 @@ package com.kodilla.TicTacToe;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
-import static com.kodilla.TicTacToe.TicTacToe.*;
-
 public class Field extends ImageView{
 
     private static boolean turnX = true;
@@ -33,10 +30,11 @@ public class Field extends ImageView{
                 System.out.println(turnX);
             }
         }
-        String winner = Game.gameIsOn(field00,field01,field02,field10,field11,field12,field20,field21,field22);
-        System.out.println(winner);
-        Game.whenFinished();
+        boolean isGameOn = Game.getInstance().checkIfGameIsOn();
 
+        if(!isGameOn) {
+            Game.finishTheGame();
+        }
     }
 
     public int getCol() {
