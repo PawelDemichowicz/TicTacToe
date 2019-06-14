@@ -20,4 +20,8 @@ public class Row {
                 && this.rows.get(1).getImage().equals(this.rows.get(2).getImage());
 
     }
+
+    public List<Field> getRows() {
+        return rows;
+    }
 }

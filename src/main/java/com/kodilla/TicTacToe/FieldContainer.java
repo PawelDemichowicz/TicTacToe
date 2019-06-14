@@ -12,4 +12,8 @@ public class FieldContainer {
     static Field field12 = new Field(Constans.EMPTY,1,2);
     static Field field22 = new Field(Constans.EMPTY,2,2);
 
+    static Turn fieldTurn = new Turn(Constans.CROSS_TURN);
+
+
+
 }

@@ -3,27 +3,24 @@ package com.kodilla.TicTacToe;
 import com.google.common.collect.Sets;
 import javafx.scene.image.Image;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import static com.kodilla.TicTacToe.FieldContainer.field00;
-import static com.kodilla.TicTacToe.FieldContainer.field01;
-import static com.kodilla.TicTacToe.FieldContainer.field02;
-import static com.kodilla.TicTacToe.FieldContainer.field10;
-import static com.kodilla.TicTacToe.FieldContainer.field11;
-import static com.kodilla.TicTacToe.FieldContainer.field12;
-import static com.kodilla.TicTacToe.FieldContainer.field20;
-import static com.kodilla.TicTacToe.FieldContainer.field21;
-import static com.kodilla.TicTacToe.FieldContainer.field22;
+import static com.kodilla.TicTacToe.FieldContainer.*;
 
 public class Game {
 
+    public int crossScore = 0;
+    public int circleScore = 0;
     private static Game instance;
 
     private Game() {
     }
 
-    static Game getInstance(){
-        if(instance == null){
+    static Game getInstance() {
+        if (instance == null) {
             instance = new Game();
         }
         return instance;
@@ -46,27 +43,56 @@ public class Game {
 
         if (checkIfWinner(Constans.CROSS)) {
             System.out.println("The winner is CROSS");
+            crossScore++;
             return false;
         }
 
         if (checkIfWinner(Constans.CIRCLE)) {
             System.out.println("The winner is CIRCLE");
+            circleScore++;
             return false;
         }
-
-        System.out.println("The game is on");
+        if (checkIfDraw()) {
+            System.out.println("Draw");
+            return false;
+        }
         return true;
     }
 
     private boolean checkIfWinner(Image image) {
         return this.rows
                 .stream()
-                .anyMatch(r->r.checkIfWinner(image));
+                .anyMatch(r -> r.checkIfWinner(image));
     }
 
-    public static void finishTheGame() {
+    private boolean checkIfDraw() {
+        return this.rows
+                .stream()
+                .map(Row::getRows)
+                .flatMap(Collection::stream)
+                .noneMatch(r -> r.getImage().equals(Constans.EMPTY));
+    }
+
+    public void showWhoWins() {
         System.out.print("The Game is ending....");
+
+        if (checkIfWinner(Constans.CROSS)) {
+            TicTacToe.winner.setText("Cross is winner");
+        }
+        if (checkIfWinner(Constans.CIRCLE)) {
+            TicTacToe.winner.setText("Circle is winner");
+        }
+        if (checkIfDraw()) {
+            TicTacToe.winner.setText("Draw");
+        }
         TicTacToe.window.setScene(TicTacToe.endScene);
     }
 
+    public void clearApp() {
+        List<Field> collect = rows.stream()
+                .map(Row::getRows)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+        collect.forEach(x -> x.setImage(Constans.EMPTY));
+    }
 }

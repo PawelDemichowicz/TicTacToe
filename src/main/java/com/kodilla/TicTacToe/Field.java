@@ -3,7 +3,7 @@ package com.kodilla.TicTacToe;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Field extends ImageView{
+public class Field extends ImageView {
 
     private static boolean turnX = true;
     private int col;
@@ -23,18 +23,17 @@ public class Field extends ImageView{
             if (turnX) {
                 this.setImage(Constans.CROSS);
                 turnX = false;
-                System.out.println(turnX);
             } else {
                 this.setImage(Constans.CIRCLE);
                 turnX = true;
-                System.out.println(turnX);
             }
         }
         boolean isGameOn = Game.getInstance().checkIfGameIsOn();
 
-        if(!isGameOn) {
-            Game.finishTheGame();
+        if (!isGameOn) {
+            Game.getInstance().showWhoWins();
         }
+        FieldContainer.fieldTurn.whoseTurn();
     }
 
     public int getCol() {
