@@ -1,4 +1,4 @@
-package com.kodilla.TicTacToe;
+package com.kodilla.game;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

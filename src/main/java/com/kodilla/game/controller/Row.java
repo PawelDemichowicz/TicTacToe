@@ -1,4 +1,4 @@
-package com.kodilla.TicTacToe;
+package com.kodilla.game.controller;
 
 import com.google.common.collect.Lists;
 import javafx.scene.image.Image;
@@ -13,15 +13,15 @@ public class Row {
         this.rows = Lists.newArrayList(f);
     }
 
+    public List<Field> getRows() {
+        return rows;
+    }
+
     boolean checkIfWinner(Image image) {
 
         return this.rows.get(0).getImage().equals(image) &&
                 this.rows.get(0).getImage().equals(this.rows.get(1).getImage())
                 && this.rows.get(1).getImage().equals(this.rows.get(2).getImage());
 
-    }
-
-    public List<Field> getRows() {
-        return rows;
     }
 }

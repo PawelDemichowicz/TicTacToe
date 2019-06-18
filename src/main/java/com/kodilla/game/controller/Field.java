@@ -1,4 +1,4 @@
-package com.kodilla.TicTacToe;
+package com.kodilla.game.controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -6,25 +6,25 @@ import javafx.scene.image.ImageView;
 public class Field extends ImageView {
 
     private static boolean turnX = true;
-    private int col;
-    private int row;
 
-    public Field(Image image, int col, int row) {
+    public Field(Image image) {
         super(image);
-        this.col = col;
-        this.row = row;
         this.setOnMouseClicked(event -> handleMouseClicked());
 
     }
 
+    public static boolean isTurnX() {
+        return turnX;
+    }
+
     private void handleMouseClicked() {
 
-        if (getImage() == Constans.EMPTY) {
+        if (getImage() == Constants.EMPTY) {
             if (turnX) {
-                this.setImage(Constans.CROSS);
+                this.setImage(Constants.CROSS);
                 turnX = false;
             } else {
-                this.setImage(Constans.CIRCLE);
+                this.setImage(Constants.CIRCLE);
                 turnX = true;
             }
         }
@@ -35,17 +35,4 @@ public class Field extends ImageView {
         }
         FieldContainer.fieldTurn.whoseTurn();
     }
-
-    public int getCol() {
-        return col;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public static boolean isTurnX() {
-        return turnX;
-    }
-
 }

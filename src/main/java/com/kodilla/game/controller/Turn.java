@@ -1,8 +1,7 @@
-package com.kodilla.TicTacToe;
+package com.kodilla.game.controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 
 public class Turn extends ImageView {
 
@@ -11,11 +10,11 @@ public class Turn extends ImageView {
     }
 
     public void whoseTurn() {
-        setImage(Constans.CROSS_TURN);
+        setImage(Constants.CROSS_TURN);
         if (Field.isTurnX()) {
-            setImage(Constans.CROSS_TURN);
+            setImage(Constants.CROSS_TURN);
         } else {
-            setImage(Constans.CIRCLE_TURN);
+            setImage(Constants.CIRCLE_TURN);
         }
     }
 }

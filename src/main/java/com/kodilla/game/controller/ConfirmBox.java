@@ -1,4 +1,4 @@
-package com.kodilla.TicTacToe;
+package com.kodilla.game.controller;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,11 +9,9 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.Label;
 
-import java.awt.*;
-
 public class ConfirmBox {
 
-    static boolean answer;
+    private static boolean answer;
 
     public static boolean display(String title, String message) {
         Stage window = new Stage();
@@ -46,6 +44,5 @@ public class ConfirmBox {
         window.showAndWait();
 
         return answer;
-
     }
 }
